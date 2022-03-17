@@ -1,0 +1,21 @@
+fname = input("Enter File: ") # make sure the file extension is txt
+handle = open(fname)
+
+di = dict()
+for line in handle:
+    line = line.rstrip()
+    words = line.split()
+    for word in words:
+        di[word] = di.get(word,0)+1
+
+
+temporary_list = list()
+for key, value in di.items():
+    new_tuple = (value,key) # flip the order of key and value to value and key for the sake of sorting
+    temporary_list.append(new_tuple) # temporary list is appended with the new flipped tuple
+
+temporary_list = sorted(temporary_list,reverse=True)
+
+# print sorted
+for value,key in temporary_list[:5]: #Change the 5 to any number you want and get the top most repeated words
+    print(key,value)
